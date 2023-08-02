@@ -17,6 +17,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.zerock.ex2.security.filter.JWTCheckFilter;
 import org.zerock.ex2.security.handler.ApiLoginSuccessHandler;
+import org.zerock.ex2.security.handler.CustomAccessDeniedHandler;
 
 import java.util.Arrays;
 
@@ -43,6 +44,9 @@ public class CustomSecurityConfig {
             config.loginPage("/api/member/login");
             config.successHandler(new ApiLoginSuccessHandler());
 
+        });
+        http.exceptionHandling(config -> {
+            config.accessDeniedHandler(new CustomAccessDeniedHandler());
         });
 
         //세션/쿠키 사용안함

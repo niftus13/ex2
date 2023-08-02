@@ -35,7 +35,7 @@ public class TodoController {
         return service.get(tno);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_USER')")
     @GetMapping("/list")
     public PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO ) {
 
