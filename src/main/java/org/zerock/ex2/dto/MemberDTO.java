@@ -66,4 +66,9 @@ public class MemberDTO extends User implements OAuth2User {
     public String getName() {
         return this.email;
     }
+
+    public void setProps(Map<String, Object> map) {
+
+
+    }
 }

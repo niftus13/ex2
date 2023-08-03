@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +17,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.zerock.ex2.security.filter.JWTCheckFilter;
 import org.zerock.ex2.security.handler.ApiLoginSuccessHandler;
 import org.zerock.ex2.security.handler.CustomAccessDeniedHandler;
+import org.zerock.ex2.security.handler.OAuthAPILoginSuccessHandler;
 
 import java.util.Arrays;
 
@@ -48,9 +48,15 @@ public class CustomSecurityConfig {
             config.accessDeniedHandler(new CustomAccessDeniedHandler());
         });
 
-        // 카카오 로그인을 위한
+        // 카카오 로그인
         http.oauth2Login(config -> {
+            config.successHandler(new OAuthAPILoginSuccessHandler());
         });
+
+        http.oauth2Client(config -> {
+
+        });
+
 
         //세션/쿠키 사용안함
         http.sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
