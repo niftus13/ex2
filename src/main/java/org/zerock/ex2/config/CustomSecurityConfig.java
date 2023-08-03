@@ -43,10 +43,13 @@ public class CustomSecurityConfig {
         http.formLogin(config -> {
             config.loginPage("/api/member/login");
             config.successHandler(new ApiLoginSuccessHandler());
-
         });
         http.exceptionHandling(config -> {
             config.accessDeniedHandler(new CustomAccessDeniedHandler());
+        });
+
+        // 카카오 로그인을 위한
+        http.oauth2Login(config -> {
         });
 
         //세션/쿠키 사용안함

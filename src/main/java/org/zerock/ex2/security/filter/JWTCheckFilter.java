@@ -33,6 +33,13 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             return true;
         }
 
+        if(path.startsWith("/login")){
+            return true;
+        }
+        if(path.startsWith("/oauth2")){
+            return true;
+        }
+
         return false;
     }
 
