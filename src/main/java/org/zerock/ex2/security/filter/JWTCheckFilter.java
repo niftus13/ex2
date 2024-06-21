@@ -54,7 +54,9 @@ public class JWTCheckFilter extends OncePerRequestFilter {
 
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, 
+                                    HttpServletResponse response, 
+                                    FilterChain filterChain) throws ServletException, IOException {
 
         log.info("----------------------doFilterInternal -----------------------");
 
@@ -78,7 +80,6 @@ public class JWTCheckFilter extends OncePerRequestFilter {
             log.info("-----------------------------------");
             log.info(memberDTO);
             log.info(memberDTO.getAuthorities());
-            // 중요 : -
             UsernamePasswordAuthenticationToken authenticationToken
                     = new UsernamePasswordAuthenticationToken(memberDTO, pw, memberDTO.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);

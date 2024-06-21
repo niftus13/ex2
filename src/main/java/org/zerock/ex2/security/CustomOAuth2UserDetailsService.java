@@ -50,6 +50,9 @@ public class CustomOAuth2UserDetailsService extends DefaultOAuth2UserService {
             case "kakao":
                 email = getKakaoEmail(paramMap);
                 break;
+            case "google":
+                email = getGoogleEmail(paramMap);
+                break;
         }
 
         log.info("===============================");
@@ -98,6 +101,22 @@ public class CustomOAuth2UserDetailsService extends DefaultOAuth2UserService {
 
             return memberDTO;
         }
+    }
+    private String getGoogleEmail(Map<String, Object> paramMap){
+
+        log.info("KAKAO-----------------------------------------");
+
+        Object value = paramMap.get("kakao_account");
+
+        log.info(value);
+
+        LinkedHashMap accountMap = (LinkedHashMap) value;
+
+        String email = (String)accountMap.get("email");
+
+        log.info("email..." + email);
+
+        return email;
     }
 
 

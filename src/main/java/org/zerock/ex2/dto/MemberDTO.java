@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 public class MemberDTO extends User implements OAuth2User {
 
     private String email;
+    
     private String pw;
 
     private String nickname;
